@@ -15,7 +15,7 @@ export default function Home() {
 
   // Fetch flashcards from the backend API
   useEffect(() => {
-    fetch("http://localhost:5000/cards")
+    fetch("https://flashcard-fzgh.onrender.com/cards")
       .then((response) => response.json())
       .then((data) => {
         setFlashcards(data);

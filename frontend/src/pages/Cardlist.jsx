@@ -7,14 +7,14 @@ export default function Cardlist() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/cards")
+      .get("https://flashcard-fzgh.onrender.com/cards")
       .then((response) => setcards(response.data))
       .catch((err) => console.log(err));
   }, []);
 
   const deleteCard = (id) => {
     axios
-      .delete(`http://localhost:5000/cards/${id}`)
+      .delete(`https://flashcard-fzgh.onrender.com/cards/${id}`)
       .then(() => {
         setcards(cards.filter((card) => card._id !== id));
       })

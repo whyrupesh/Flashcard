@@ -9,7 +9,7 @@ export default function Dashboard() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/cards", {
+      await axios.post("https://flashcard-fzgh.onrender.com/cards", {
         front,
         back,
       });
