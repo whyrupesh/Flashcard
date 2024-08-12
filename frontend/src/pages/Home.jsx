@@ -1,13 +1,15 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Card from "../components/Card";
 import { FaArrowCircleRight } from "react-icons/fa";
 import { FaArrowCircleLeft } from "react-icons/fa";
 import { useState, useEffect } from "react";
+import Loading from "../components/Loading";
 
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [flashcards, setFlashcards] = useState([]);
   const [flip, setFlip] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const handleClick = () => {
     setFlip(!flip);
@@ -20,8 +22,12 @@ export default function Home() {
       .then((data) => {
         setFlashcards(data);
         setCurrentIndex(0); // Start with the first flashcard
+        setLoading(false);
       })
-      .catch((error) => console.error("Error fetching flashcards:", error));
+      .catch((error) => {
+        console.error("Error fetching flashcards:", error);
+        setLoading(false);
+      });
   }, []);
 
   const handleLeftClick = () => {
@@ -46,13 +52,17 @@ export default function Home() {
     <>
       <div className="flex space-x-9 justify-center items-center mt-5">
         <FaArrowCircleLeft color="white" onClick={handleLeftClick} />
-        {flashcards.length > 0 && (
+
+        {loading ? (
+          <Loading />
+        ) : (
           <Card
             flashcards={flashcards[currentIndex]}
             flip={flip}
             handleClick={handleClick}
           />
         )}
+
         <FaArrowCircleRight color="white" onClick={handleRightClick} />
       </div>
     </>
