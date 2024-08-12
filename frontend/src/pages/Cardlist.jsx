@@ -23,7 +23,7 @@ export default function Cardlist() {
 
   return (
     <div>
-      <div className="text-white font-bold mb-3 mt-2">Add Cards List</div>
+      <div className="text-white font-bold mb-3 mt-2">Cards List</div>
 
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-center rtl:text-right text-white-500">
